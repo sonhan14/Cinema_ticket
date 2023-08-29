@@ -6,10 +6,14 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
+    Dimensions,
 } from 'react-native';
 import { images } from '../images';
+import { color } from '../theme/fonts/colors';
 
-export default function Login() {
+const layout = Dimensions.get('window');
+
+export default function Login({navigation}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     return (
@@ -35,12 +39,13 @@ export default function Login() {
                     onChangeText={password => setPassword(password)}
                 />
             </View>
-            <TouchableOpacity style={styles.loginBtn}>
+            <TouchableOpacity style={styles.loginBtn}
+                onPress={() => navigation.navigate('HomeNon')}>
                 <Text style={styles.loginText}>LOGIN</Text>
             </TouchableOpacity>
             <View style={styles.actions}>
                 <TouchableOpacity style={{ marginHorizontal: 15 }}>
-                    <Text >Forgot Password?</Text>
+                    <Text style={styles.forgot}>Forgot Password?</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Text style={styles.singUp}>Signup</Text>
@@ -52,7 +57,7 @@ export default function Login() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: color.default_background,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -63,7 +68,7 @@ const styles = StyleSheet.create({
         marginBottom: 40,
     },
     inputView: {
-        width: '80%',
+        width: layout.width * 0.8,
         backgroundColor: '#EAEAEA',
         borderRadius: 25,
         height: 50,
@@ -81,7 +86,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
     loginBtn: {
-        width: '80%',
+        width: layout.width * 0.8,
         backgroundColor: '#39B54A',
         borderRadius: 25,
         height: 50,
@@ -107,7 +112,10 @@ const styles = StyleSheet.create({
     },
     logo_style: {
         marginBottom: 25,
-        width: 250,
-        height: 100,
+        width: layout.width * 0.5,
+        height: layout.height * 0.2,
     },
+    forgot: {
+        color: color.white,
+    }
 });

@@ -9,22 +9,21 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import SplashScreen from 'react-native-splash-screen';
 import Login from './src/screens/Login';
+import { color } from './src/theme/fonts/colors';
+import Navigation from './src/navigatiors/app-navigator';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
   useEffect(() => {
     SplashScreen.hide();
   }, []);
   return (
-    <SafeAreaView style={[styles.container, backgroundStyle]}>
+    <SafeAreaView style={[styles.container]}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+        barStyle={'light-content'}
+        backgroundColor={color.default_status_bar}
       />
-      <Login />
+      <Navigation/>
     </SafeAreaView>
   );
 }
