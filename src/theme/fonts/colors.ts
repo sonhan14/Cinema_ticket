@@ -21,5 +21,6 @@ export const color = {
     xam_nhat: '#EEF2F9',
     orange_2: '#F15829',
     default_background: '#1A2232',
-    default_status_bar: '#1F293D'
+    default_status_bar: '#1F293D',
+    text_session: '#637394',
 };

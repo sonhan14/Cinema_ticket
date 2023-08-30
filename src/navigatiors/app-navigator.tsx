@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../screens/Login';
 import { HomeScreenNon } from '../screens/home/home-nonauth';
+import { MovieAbout } from '../screens/movie/movie-about';
 
 
 
@@ -18,6 +19,7 @@ const Navigation = () => {
                 initialRouteName="Login" >
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="HomeNon" component={HomeScreenNon} />
+                <Stack.Screen name="MovieAbout" component={MovieAbout} />
             </Stack.Navigator>
         </NavigationContainer>
     );
