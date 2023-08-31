@@ -11,12 +11,14 @@ import SplashScreen from 'react-native-splash-screen';
 import Login from './src/screens/Login';
 import { color } from './src/theme/fonts/colors';
 import Navigation from './src/navigatiors/app-navigator';
+import { movieCastDetails, nowPlayingMovies, searchMovies} from './src/api/apicalls'
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
   useEffect(() => {
     SplashScreen.hide();
   }, []);
+
   return (
     <SafeAreaView style={[styles.container]}>
       <StatusBar
