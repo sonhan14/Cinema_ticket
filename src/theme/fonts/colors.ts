@@ -22,6 +22,7 @@ export const color = {
     orange_2: '#F15829',
     default_background: '#1A2232',
     default_status_bar: '#1F293D',
+
     icon_bar: '#637394',
     header: 'rgba(31, 41, 61, 0.7)',
     Black: '#000000',
@@ -36,4 +37,7 @@ export const color = {
     WhiteRGBA50: 'rgba(255,255,255,0.50)',
     WhiteRGBA32: 'rgba(255,255,255,0.32)',
     WhiteRGBA15: 'rgba(255,255,255,0.15)',
+
+    text_session: '#637394',
+
 };
