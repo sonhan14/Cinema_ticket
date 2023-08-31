@@ -22,5 +22,22 @@ export const color = {
     orange_2: '#F15829',
     default_background: '#1A2232',
     default_status_bar: '#1F293D',
+
+    icon_bar: '#637394',
+    header: 'rgba(31, 41, 61, 0.7)',
+    Black: '#000000',
+    BlackRGB10: 'rgba(0,0,0,0.1)',
+    Orange: '#FF5520',
+    OrangeRGBA0: 'rgba(255,85,36,0)',
+    Grey: '#333333',
+    DarkGrey: '#0b0b0b',
+    Yellow: '#E1CD17',
+    White: '#FFFFFF',
+    WhiteRGBA75: 'rgba(255,255,255,0.75)',
+    WhiteRGBA50: 'rgba(255,255,255,0.50)',
+    WhiteRGBA32: 'rgba(255,255,255,0.32)',
+    WhiteRGBA15: 'rgba(255,255,255,0.15)',
+
     text_session: '#637394',
+
 };

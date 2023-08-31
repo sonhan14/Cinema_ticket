@@ -12,7 +12,7 @@ import { images } from '../images';
 import { color } from '../theme/fonts/colors';
 
 const layout = Dimensions.get('window');
-
+// @ts-ignore
 export default function Login({navigation}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

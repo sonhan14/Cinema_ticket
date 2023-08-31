@@ -2,8 +2,13 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../screens/Login';
-import { HomeScreenNon } from '../screens/home/home-nonauth';
+
+import HomeScreenNon from '../screens/home/home-nonauth';
+import MovieCard from '../../components/MovieCard';
+
+
 import { MovieAbout } from '../screens/movie/movie-about';
+
 
 
 
@@ -16,10 +21,14 @@ const Navigation = () => {
                 screenOptions={{
                     headerShown: false,
                 }}
-                initialRouteName="Login" >
-                <Stack.Screen name="Login" component={Login} />
+                initialRouteName="HomeNon" >
+                <Stack.Screen name="Login" component={MovieCard} />
                 <Stack.Screen name="HomeNon" component={HomeScreenNon} />
+
+                <Stack.Screen name="MovieCard" component={MovieCard} />
+
                 <Stack.Screen name="MovieAbout" component={MovieAbout} />
+
             </Stack.Navigator>
         </NavigationContainer>
     );
