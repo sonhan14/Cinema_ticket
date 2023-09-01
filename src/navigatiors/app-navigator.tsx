@@ -40,7 +40,7 @@ const Navigation = () => {
                     headerShown: false,
                     animation: 'simple_push'
                 }}
-                initialRouteName="Profile" >
+                initialRouteName="HomeNon" >
                 <Stack.Screen name="Login" component={Login} />
 
                 <Stack.Screen name="Register" component={Register} />

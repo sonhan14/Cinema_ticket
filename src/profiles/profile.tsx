@@ -48,22 +48,26 @@ export const ProfileHeader = (props: any) => {
 export const SaveCards = (props: any) => {
     return <View style={{ height: layout.height * 0.2, width: layout.width, flexDirection: 'column' }}>
         <Text style={[styles.text_title, { color: color.text_session }]}>Save Cards</Text>
-        <View style={{
-            height: layout.height * 0.1,
-            width: layout.width * 0.94,
-            flexDirection: 'row',
-            backgroundColor: color.default_status_bar ,
-            marginHorizontal: 15,
-            borderRadius: BORDERRADIUS.radius_8,
-            alignItems: 'center',
-        }}>
+        <View style={styles.visaBoxStyle}>
             <TouchableOpacity style={styles.visaStyle}>
                 <FontAwesomeIcon name='cc-visa' size={30} color={color.visa} />
             </TouchableOpacity>
-            <Text style={[styles.text_number_of_card, { color: color.white }]}>4716 •••• •••• 5615</Text>
-            <Text style={[styles.text_date_of_card, { color: color.text_session }]}>06/24</Text>
+            <Text style={[styles.text_number_of_card]}>4716 •••• •••• 5615</Text>
+            <Text style={[styles.text_date_of_card]}>06/24</Text>
+        </View>
 
+        <TouchableOpacity style={styles.buttonSaveCardStyle}>
+            <Text style={[styles.text_add]}>Add new card</Text>
+        </TouchableOpacity>
 
+        <View style={{ paddingTop: 15 }}></View>
+
+        <Text style={[styles.text_title, { color: color.text_session }]}>Payments history</Text>
+        <View style={styles.paymentsBoxStyle}>
+            <Image source={images.logo} resizeMode="contain" style={styles.imageStyle} />
+            <View style={{backgroundColor: color.Yellow, flex: 1}}>
+
+            </View>
         </View>
 
     </View>
@@ -89,15 +93,49 @@ const styles = StyleSheet.create({
         backgroundColor: color.default_status_bar,
 
     },
+    visaBoxStyle: {
+        height: layout.height * 0.1,
+        width: layout.width * 0.94,
+        flexDirection: 'row',
+        backgroundColor: color.default_status_bar,
+        marginHorizontal: 15,
+        borderRadius: BORDERRADIUS.radius_8,
+        alignItems: 'center',
+    },
+    paymentsBoxStyle: {
+        height: layout.height * 0.17,
+        width: layout.width * 0.94,
+        flexDirection: 'row',
+        backgroundColor: color.default_status_bar,
+        marginHorizontal: 15,
+        borderRadius: BORDERRADIUS.radius_8,
+        alignItems: 'center',
+    },
+    buttonSaveCardStyle: {
+        marginTop: 20,
+        height: layout.height * 0.07,
+        width: layout.width * 0.94,
+        borderWidth: 1,
+        borderColor: color.text_session,
+        marginHorizontal: 15,
+        borderRadius: BORDERRADIUS.radius_8,
+        alignItems: 'center',
+    },
     visaStyle: {
         padding: 10,
         alignItems: 'center'
     },
     text_date_of_card: {
-        color: color.white,
+        color: color.text_session,
         fontSize: 18,
         fontWeight: '600',
         paddingLeft: 70,
+    },
+    imageStyle: {
+        flex: 1,
+        marginHorizontal: 10,
+        width: layout.width * 0.5,
+        height: layout.height * 0.2,
     },
 
     titleMiddle: {
@@ -162,5 +200,11 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '600',
         padding: 20,
+    },
+    text_add: {
+        color: color.white,
+        fontSize: 18,
+        fontWeight: 'bold',
+        padding: 15
     }
 })
