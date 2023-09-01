@@ -39,5 +39,6 @@ export const color = {
     WhiteRGBA15: 'rgba(255,255,255,0.15)',
 
     text_session: '#637394',
+    visa: 'rgba(99, 115, 148, 1)'
 
 };

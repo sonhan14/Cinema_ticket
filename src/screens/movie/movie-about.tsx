@@ -19,6 +19,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const layout = Dimensions.get('window');
 
 export const MovieHeader = () => {
+    
     const [tabIndex, setTabIndex] = useState(false); //choose about or session
     return (
         <View style={styles.containerHeader}>
@@ -44,6 +45,7 @@ export const MovieHeader = () => {
             </View>
         </View>
     )
+
 }
 
 const MovieTrailer = () => {
@@ -74,7 +76,6 @@ const MovieTrailer = () => {
                             </TouchableOpacity>
                         </View>
                 }
-
             </TouchableOpacity>
 
             {/* movie mark */}
@@ -94,7 +95,7 @@ const MovieTrailer = () => {
     );
 }
 
-const Info = ({ title, result } : any) => {
+const Info = ({ title, result }: any) => {
     return (
         <View style={{ flexDirection: 'row', paddingVertical: 5, justifyContent: 'space-between' }}>
             <Text style={[styles.text_mark, { color: color.text_session, width: '25%' }]}>{title}</Text>

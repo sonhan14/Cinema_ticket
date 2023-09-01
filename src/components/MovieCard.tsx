@@ -6,8 +6,6 @@ import { BORDERRADIUS } from '../theme/fonts/borderRadius';
 import { FONTFAMILY } from '../theme/fonts/fontFamily';
 import { FONTSIZE } from '../theme/fonts/fontSize';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
 const layout = Dimensions.get('window');
 
 const genres: any = {
@@ -39,7 +37,6 @@ const MovieCard = (props: any) => {
                 style={[
                     styles.container,
                 ]}>
-                
                     <Image
                         style={[styles.cardImage]}
                         source={{ uri: props.imagePath }}
@@ -47,7 +44,7 @@ const MovieCard = (props: any) => {
 
                     <View style={[
                         styles.rateContainer, 
-                        {backgroundColor: props.vote_average > 7 ? color.orange : color.Grey}]}>
+                        {backgroundColor: props.vote_average > 7 ? color.orange : color.default_status_bar}]}>
                         <Text style={[styles.voteText]}>
                             {props.vote_average}
                         </Text>
@@ -57,13 +54,12 @@ const MovieCard = (props: any) => {
                         {props.title}
                     </Text>
 
-                    <View style={styles.genreContainer}>
-                        {props.genre.map((item: any) => {
-                            return (
-                                <Text style={styles.genreText}>{genres[item]}</Text>
-                            );
-                        })}
-                    </View>
+                    {props.genre.map((item: any) => {
+                        return (
+                            <Text style={styles.genreText}>{genres[item]}</Text>
+                        );
+                    })}
+                    
                 </View>
             
         </TouchableOpacity>
@@ -76,14 +72,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 0.5,
         backgroundColor: color.default_background,
-        padding: 10,
-        margin: 5,
-        width: layout.width *0.5,
-        height: layout.height * 0.4,
+        padding: 5,
+        margin: 10,
+        width: layout.width * 0.42,
+        height: layout.height * 0.32,
     },
     cardImage: {
-        width: layout.width * 0.4,
-        height: layout.height * 0.3,
+        width: layout.width * 0.42,
+        height: layout.height * 0.25,
         borderRadius: BORDERRADIUS.radius_8,
         alignContent: 'center'
     },
@@ -102,9 +98,9 @@ const styles = StyleSheet.create({
         marginTop: SPACING.space_10,
         position: 'absolute',
         borderRadius: BORDERRADIUS.radius_4,
-        height: 30,
+        height: 25,
         width: 30,
-        right: 20,
+        right: 0,
         top: 10
     },
     voteText: {
@@ -119,17 +115,11 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
     },
-    genreBox: {
-        borderColor: color.WhiteRGBA50,
-        borderWidth: 1,
-        paddingVertical: SPACING.space_4,
-        paddingHorizontal: SPACING.space_10,
-        borderRadius: BORDERRADIUS.radius_25,
-    },
     genreText: {
         fontFamily: FONTFAMILY.poppins_regular,
         fontSize: FONTSIZE.size_10,
         color: color.xam_nhat,
-        padding: 5,
+        textAlign: 'left',
+        marginTop: 10,
     },
 });
