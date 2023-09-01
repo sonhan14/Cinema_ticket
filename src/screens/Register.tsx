@@ -24,7 +24,7 @@ const Register = ({ navigation }: any) => {
 	const [retypePassword, setRetypePassword] = useState('')
 
     const [showErrors, setShowErrors] = useState(false)
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState<any>({})
 
     // @ts-ignore
     const getErrors = (email, password, retypePassword) => {
@@ -55,8 +55,8 @@ const Register = ({ navigation }: any) => {
         return errors;
     }
 
-    const handelRegister = () => {
-        const errors = getErrors(email, password, retypePassword);
+    const handleRegister = () => {
+        const errors: any = getErrors(email, password, retypePassword);
 
         if(Object.keys(errors).length > 0) {
             setShowErrors(true);
@@ -65,11 +65,11 @@ const Register = ({ navigation }: any) => {
         } else {
             setErrors({});
             setShowErrors(false);
-            handelSignUp(email,password);
+            handleSignUp(email,password);
         }
     }
 
-    const handelSignUp = (email, password) => {
+    const handleSignUp = (email: string, password: string) => {
         CreateAccountWithEmailAndPassword({email, password}).then(() => {
 			navigation.navigate('Login')
 			ToastAndroid.show('Account Created', ToastAndroid.SHORT)
@@ -151,7 +151,7 @@ const Register = ({ navigation }: any) => {
         <TouchableOpacity style={styles.loginBtn}
             onPress={() => { 
             // Register(email, password)
-            handelRegister()
+            handleRegister()
             }}>
             <Text style={styles.loginText}>REGISTER</Text>
         </TouchableOpacity>

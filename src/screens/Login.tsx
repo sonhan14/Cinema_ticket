@@ -22,7 +22,7 @@ export default function Login({ navigation }: any) {
     
 
     const [showErrors, setShowErrors] = useState(false)
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState<any>({})
 
     const [hidePassword, setHidePassword] = useState(true)
 
@@ -48,7 +48,7 @@ export default function Login({ navigation }: any) {
         return errors;
     }
 
-    const handelRegister = () => {
+    const handleRegister = () => {
         const errors = getErrors(email, password);
 
         if (Object.keys(errors).length > 0) {
@@ -58,14 +58,14 @@ export default function Login({ navigation }: any) {
         } else {
             setErrors({});
             setShowErrors(false);
-            handelSignIn({email: email, password: password});
+            handleSignIn({email: email, password: password});
         }
     }
 
-    const handelSignIn = ({email, password}) => {
+    const handleSignIn = ({email, password}) => {
         SignInWithEmailAndPassword({ email, password })
             .then(() => {
-                navigation.navigate('HomeNon'),
+                navigation.navigate('HomeAuth'),
                     ToastAndroid.show('Logged In', ToastAndroid.SHORT)
             })
             .catch(error => {
@@ -153,7 +153,7 @@ export default function Login({ navigation }: any) {
             <TouchableOpacity style={styles.loginBtn}
                 onPress={() =>
                     // login(email, password)
-                    handelRegister()
+                    handleRegister()
                 }>
                 <Text style={styles.loginText}>LOGIN</Text>
             </TouchableOpacity>

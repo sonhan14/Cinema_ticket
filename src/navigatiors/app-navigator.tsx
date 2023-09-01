@@ -6,7 +6,10 @@ import Register from '../screens/Register'
 import HomeScreenNon from '../screens/home/home-nonauth';
 import MovieCard from '../components/MovieCard';
 import { MovieAbout } from '../screens/movie/movie-about';
+import HomeScreenAuth from '../screens/home/home-auth';
 import auth from '@react-native-firebase/auth';
+import ProfileScreen from '../profiles/profile';
+import ProfileEmptyScreen from '../profiles/profile_empty';
 
 
 const Stack = createNativeStackNavigator();
@@ -37,12 +40,19 @@ const Navigation = () => {
                     headerShown: false,
                     animation: 'simple_push'
                 }}
-                initialRouteName="Login" >
+                initialRouteName="Profile" >
                 <Stack.Screen name="Login" component={Login} />
 
                 <Stack.Screen name="Register" component={Register} />
 
                 <Stack.Screen name="HomeNon" component={HomeScreenNon} />
+
+                <Stack.Screen name="HomeAuth" component={HomeScreenAuth} />
+
+                <Stack.Screen name="Profile" component={ProfileScreen} />
+
+                <Stack.Screen name="ProfileEmpty" component={ProfileEmptyScreen} />
+
 
                 <Stack.Screen name="MovieCard" component={MovieCard} />
 
