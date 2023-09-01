@@ -6,8 +6,8 @@ import { BORDERRADIUS } from '../theme/fonts/borderRadius';
 import { FONTFAMILY } from '../theme/fonts/fontFamily';
 import { FONTSIZE } from '../theme/fonts/fontSize';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-
 const layout = Dimensions.get('window');
+
 const genres: any = {
     28: 'Action',
     12: 'Adventure',
