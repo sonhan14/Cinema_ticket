@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../screens/Login';
 
 import HomeScreenNon from '../screens/home/home-nonauth';
-import MovieCard from '../../components/MovieCard';
+import MovieCard from '../components/MovieCard';
 
 
 import { MovieAbout } from '../screens/movie/movie-about';

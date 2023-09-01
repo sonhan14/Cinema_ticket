@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { SPACING } from '../src/theme/fonts/spacing';
-import { color } from '../src/theme/fonts/colors';
-import { BORDERRADIUS } from '../src/theme/fonts/borderRadius';
-import { FONTFAMILY } from '../src/theme/fonts/fontFamily';
-import { FONTSIZE } from '../src/theme/fonts/fontSize';
+import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { SPACING } from '../theme/fonts/spacing';
+import { color } from '../theme/fonts/colors';
+import { BORDERRADIUS } from '../theme/fonts/borderRadius';
+import { FONTFAMILY } from '../theme/fonts/fontFamily';
+import { FONTSIZE } from '../theme/fonts/fontSize';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+const layout = Dimensions.get('window');
 
 const genres: any = {
     28: 'Action',
@@ -76,12 +78,12 @@ const styles = StyleSheet.create({
         backgroundColor: color.default_background,
         padding: 10,
         margin: 5,
-        width: 200,
-        height: 300,
+        width: layout.width *0.5,
+        height: layout.height * 0.4,
     },
     cardImage: {
-        width: 180,
-        height: 250,
+        width: layout.width * 0.4,
+        height: layout.height * 0.3,
         borderRadius: BORDERRADIUS.radius_8,
         alignContent: 'center'
     },
