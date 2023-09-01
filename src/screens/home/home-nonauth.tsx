@@ -6,7 +6,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { FONTSIZE } from '../../theme/fonts/fontSize';
 import { useEffect, useState } from 'react';
 import { SPACING } from '../../theme/fonts/spacing';
-import MovieCard from '../../../components/MovieCard';
+import MovieCard from '../../components/MovieCard';
 import { baseImagePath, nowPlayingMovies } from '../../api/apicalls';
 
 
@@ -45,7 +45,8 @@ const HomeScreenNon = ({ navigation }: any) => {
 			<View
 				style={{
 					flexDirection: 'column',
-					backgroundColor: color.header
+					backgroundColor: color.header,
+					alignItems: 'center'
 				}}>
 				<View style={styles.headerStyle}>
 					<Image source={images.logo} resizeMode="contain" />
@@ -77,11 +78,16 @@ const HomeScreenNon = ({ navigation }: any) => {
 				keyExtractor={(item: any) => item.id}
 				bounces={false}
 				showsVerticalScrollIndicator={true}
+				
 				// @ts-ignore
 				renderItem={({ item, index }) => {
 					if (item.original_title) {
 					return (
 						<MovieCard
+							cardFunction={() => {
+								navigation.push('MovieAbout', {movieid: item.id})
+							}}
+							
 							title={item.original_title}
 							imagePath={baseImagePath('w780', item.poster_path)}
 							genre={item.genre_ids.slice(1, 2)}
@@ -108,7 +114,7 @@ const styles = StyleSheet.create({
 		alignContent: 'center',
 		padding: 5,
 		alignItems: 'center',
-		marginRight: 5
+		marginRight: 5,
 	},
 	textStyle: {
 		color: '#ffffff',
@@ -122,7 +128,7 @@ const styles = StyleSheet.create({
 		height: 40,
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginRight: 50
+		marginLeft: 10,
 	},
 	titleStyle: {
 		flexDirection: 'row',
@@ -135,6 +141,10 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		fontSize: 24,
 		marginLeft: 20
+	},
+	iconStyle: {
+		size : '39', 
+		color : color.icon_bar
 	}
 });
 

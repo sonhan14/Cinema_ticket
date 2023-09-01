@@ -94,7 +94,7 @@ const MovieTrailer = () => {
     );
 }
 
-const Info = ({ title, result }) => {
+const Info = ({ title, result }: any) => {
     return (
         <View style={{ flexDirection: 'row', paddingVertical: 5, justifyContent: 'space-between' }}>
             <Text style={[styles.text_mark, { color: color.text_session, width: '25%' }]}>{title}</Text>

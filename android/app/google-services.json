@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "190435864825",
+    "project_id": "cinematicket-57250",
+    "storage_bucket": "cinematicket-57250.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190435864825:android:16c271441de47b6b587228",
+        "android_client_info": {
+          "package_name": "com.cinematic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "190435864825-eo27logbsva7jglijf7uc1gj7068si8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiZZ3xim5aubRR_lV4UqwdpnQH3BxBzxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "190435864825-eo27logbsva7jglijf7uc1gj7068si8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
