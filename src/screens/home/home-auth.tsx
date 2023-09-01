@@ -10,7 +10,7 @@ import MovieCard from '../../components/MovieCard';
 import { baseImagePath, nowPlayingMovies } from '../../api/apicalls';
 
 
-const layout = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const getNowPlayingMoviesList = async () => {
 	try {
@@ -25,7 +25,7 @@ const getNowPlayingMoviesList = async () => {
 	}
 };
 
-const HomeScreenNon = ({ navigation }: any) => {
+const HomeScreenAuth = ({ navigation }: any) => {
 	const [nowPlayingMoviesList, setNowPlayingMoviesList] = useState<any>(undefined);
 
 	useEffect(() => {
@@ -58,9 +58,9 @@ const HomeScreenNon = ({ navigation }: any) => {
 						<FontAwesomeIcon name='language' size={30} color={color.icon_bar} />
 						<Text style={styles.textStyle}>Nur-Sultan</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.loginBtn}
-						onPress={() => { navigation.navigate('Login') }}>
-						<Text style={styles.textStyle}>Log in</Text>
+					<TouchableOpacity style={styles.loginProfile}
+						onPress={() => { navigation.navigate('') }}>
+						<Text style={styles.textStyle}>Profile</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 		fontWeight: '700',
 		padding: 10,
 	},
-	loginBtn: {
+	loginProfile: {
 		width: 70,
 		backgroundColor: color.orange,
 		borderRadius: 8,
@@ -148,4 +148,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default HomeScreenNon;
+export default HomeScreenAuth;
