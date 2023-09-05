@@ -8,8 +8,9 @@ import MovieCard from '../components/MovieCard';
 import { MovieAbout } from '../screens/movie/movie-about';
 import HomeScreenAuth from '../screens/home/home-auth';
 import auth from '@react-native-firebase/auth';
-import ProfileScreen from '../profiles/profile';
-import ProfileEmptyScreen from '../profiles/profile_empty';
+import ProfileScreen from '../screens/profiles/profile';
+import ProfileEmptyScreen from '../screens/profiles/profile_empty';
+import SeatBookingScreen from '../screens/seat/SeatBooking';
 
 
 const Stack = createNativeStackNavigator();
@@ -40,7 +41,7 @@ const Navigation = () => {
                     headerShown: false,
                     animation: 'simple_push'
                 }}
-                initialRouteName="HomeNon" >
+                initialRouteName="SeatBooking" >
                 <Stack.Screen name="Login" component={Login} />
 
                 <Stack.Screen name="Register" component={Register} />
@@ -56,6 +57,8 @@ const Navigation = () => {
                 <Stack.Screen name="MovieCard" component={MovieCard} />
 
                 <Stack.Screen name="MovieAbout" component={MovieAbout} />
+
+                <Stack.Screen name="SeatBooking" component={SeatBookingScreen} />
 
             </Stack.Navigator>
         </NavigationContainer>

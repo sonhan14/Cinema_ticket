@@ -13,12 +13,12 @@ import {
 } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { color } from '../theme/fonts/colors';
+import { color } from '../../theme/fonts/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { SignOutUser } from '../utilities/Auth';
-import { BORDERRADIUS } from '../theme/fonts/borderRadius';
-import { images } from '../images';
+import { SignOutUser } from '../../utilities/Auth';
+import { BORDERRADIUS } from '../../theme/fonts/borderRadius';
+import { images } from '../../images';
 
 const layout = Dimensions.get('window');
 
