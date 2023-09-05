@@ -59,7 +59,7 @@ const HomeScreenAuth = ({ navigation }: any) => {
 						<Text style={styles.textStyle}>Nur-Sultan</Text>
 					</TouchableOpacity>
 					<TouchableOpacity style={styles.loginProfile}
-						onPress={() => { navigation.navigate('') }}>
+						onPress={() => { navigation.navigate('ProfileEmpty') }}>
 						<Text style={styles.textStyle}>Profile</Text>
 					</TouchableOpacity>
 				</View>
