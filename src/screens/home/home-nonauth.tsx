@@ -60,7 +60,7 @@ const HomeScreenNon = ({ navigation }: any) => {
 					</View>
 					<View style={styles.headerElement2}>
 						<TouchableOpacity style={styles.loginBtn}
-							onPress={() => { }}>
+							onPress={() => {  navigation.navigate('Login') }}>
 							<Text style={styles.textStyle}>Log in</Text>
 						</TouchableOpacity>
 					</View>

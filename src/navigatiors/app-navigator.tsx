@@ -53,7 +53,6 @@ const Navigation = () => {
 
                 <Stack.Screen name="ProfileEmpty" component={ProfileEmptyScreen} />
 
-
                 <Stack.Screen name="MovieCard" component={MovieCard} />
 
                 <Stack.Screen name="MovieAbout" component={MovieAbout} />

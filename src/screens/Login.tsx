@@ -54,7 +54,7 @@ export default function Login({ navigation }: any) {
         if (Object.keys(errors).length > 0) {
             setShowErrors(true);
             setErrors(showErrors && errors);
-            console.log(errors);
+
         } else {
             setErrors({});
             setShowErrors(false);
@@ -69,7 +69,6 @@ export default function Login({ navigation }: any) {
                     ToastAndroid.show('Logged In', ToastAndroid.SHORT)
             })
             .catch(error => {
-                console.log(error);
                 if (error.code === 'auth/user-not-found') {
                     setErrors({ email: 'user not found' });
                     return;

@@ -61,7 +61,6 @@ const Register = ({ navigation }: any) => {
         if(Object.keys(errors).length > 0) {
             setShowErrors(true);
             setErrors(showErrors && errors);
-            console.log(errors);
         } else {
             setErrors({});
             setShowErrors(false);
@@ -82,7 +81,6 @@ const Register = ({ navigation }: any) => {
             }
             setErrors({});
             setShowErrors(false);
-			console.log('error');
 		})
     }
 
