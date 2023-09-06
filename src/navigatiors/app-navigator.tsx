@@ -11,6 +11,8 @@ import auth from '@react-native-firebase/auth';
 import ProfileScreen from '../screens/profiles/profile';
 import ProfileEmptyScreen from '../screens/profiles/profile_empty';
 import SeatBookingScreen from '../screens/seat/SeatBooking';
+import TicketScreen from '../screens/pay_ticket/ticket';
+import PayScreen from '../screens/pay_ticket/pay';
 
 
 const Stack = createNativeStackNavigator();
@@ -41,7 +43,8 @@ const Navigation = () => {
                     headerShown: false,
                     animation: 'simple_push'
                 }}
-                initialRouteName="SeatBooking" >
+                initialRouteName="Ticket" >
+                    
                 <Stack.Screen name="Login" component={Login} />
 
                 <Stack.Screen name="Register" component={Register} />
@@ -59,6 +62,11 @@ const Navigation = () => {
                 <Stack.Screen name="MovieAbout" component={MovieAbout} />
 
                 <Stack.Screen name="SeatBooking" component={SeatBookingScreen} />
+
+                <Stack.Screen name="Pay" component={PayScreen} />
+
+                <Stack.Screen name="Ticket" component={TicketScreen} />
+
 
             </Stack.Navigator>
         </NavigationContainer>

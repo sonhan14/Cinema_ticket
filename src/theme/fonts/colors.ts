@@ -5,6 +5,7 @@ export const color = {
     white: '#ffffff',
     offWhite: '#e6e6e6',
     orange: '#F15829',
+    button: 'rgba(255, 128, 54, 1)',
     orangeDarker: '#EB9918',
     lightGrey: '#8E8E8E',
     lighterGrey: '#F2F2F2',
@@ -37,6 +38,7 @@ export const color = {
     WhiteRGBA50: 'rgba(255,255,255,0.50)',
     WhiteRGBA32: 'rgba(255,255,255,0.32)',
     WhiteRGBA15: 'rgba(255,255,255,0.15)',
+    whiteBorderImage: 'rgba(255, 255, 255, 0.25)',
 
     text_session: '#637394',
     visa: 'rgba(99, 115, 148, 1)',
