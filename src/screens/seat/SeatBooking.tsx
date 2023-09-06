@@ -68,6 +68,7 @@ export const MovieHeader = () => {
 export const SeatMap = ({navigation}: any) => {
 	const [twoDSeatArray, setTwoDSeatArray] = useState<any[][]>(generateSeats());
 	const [selectedSeatArray, setSelectedSeatArray] = useState([]);
+	const [selectedSeat, setSelectedSeat] = useState(0);
 	console.log(JSON.stringify(twoDSeatArray, null, 2));
 
 	const selectSeat = (index: number, subindex: number, num: number) => {
@@ -78,80 +79,100 @@ export const SeatMap = ({navigation}: any) => {
 			if (!array.includes(num)) {
 				array.push(num);
 				setSelectedSeatArray(array);
+				setSelectedSeat(selectedSeat + 1);
 			} else {
 				const tempindex = array.indexOf(num);
 				if (tempindex > -1) {
 					array.splice(tempindex, 1);
 					setSelectedSeatArray(array);
+					setSelectedSeat(selectedSeat - 1);
 				}
 			}
+
 			setTwoDSeatArray(temp);
 		}
+		console.log(selectedSeatArray);
+
 	};
 	return (
-		<View style={{ flex: 1, height: layout.height * 0.8, justifyContent: 'center', alignItems: 'center' }}>
-			<View style={styles.seatContainer}>
-				{/* raido button */}
-				<View style={styles.seatRadioContainer}>
-					<View style={styles.radioContainer}>
-						<Ionicons name="radio-button-on-outline" style={styles.radioIcon} />
-						<Text style={styles.radioText}>Available</Text>
+		<View style={{ alignItems: 'center' }}>
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<View style={styles.seatContainer}>
+					{/* raido button */}
+					<View style={styles.seatRadioContainer}>
+						<View style={styles.radioContainer}>
+							<Ionicons name="radio-button-on-outline" style={styles.radioIcon} />
+							<Text style={styles.radioText}>Available</Text>
+						</View>
+						<View style={styles.radioContainer}>
+							<Ionicons
+								name="radio-button-on-outline"
+								style={[styles.radioIcon, { color: color.WhiteRGBA32 }]}
+							/>
+							<Text style={styles.radioText}>Occupied</Text>
+						</View>
+						<View style={styles.radioContainer}>
+							<Ionicons
+								name="radio-button-on-outline"
+								style={[styles.radioIcon, { color: color.Orange }]}
+							/>
+							<Text style={styles.radioText}>Chosen</Text>
+						</View>
 					</View>
-					<View style={styles.radioContainer}>
-						<Ionicons
-							name="radio-button-on-outline"
-							style={[styles.radioIcon, { color: color.WhiteRGBA32 }]}
-						/>
-						<Text style={styles.radioText}>Occupied</Text>
+					{/* Text SCREEN */}
+					<Text style={{ fontSize: 18, fontWeight: '600', color: color.text_session, alignSelf: 'center', marginBottom: 10 }}>SCREEN</Text>
+					{/* SEAT */}
+					<View style={styles.containerGap20}>
+						{twoDSeatArray?.map((item, index) => {
+							return (
+								<View key={index} style={styles.seatRow}>
+									{item?.map((subitem, subindex) => {
+										return (
+											<TouchableOpacity style={{
+												backgroundColor: color.visa,
+												borderWidth: 1,
+												borderColor: color.text_session,
+												borderRadius: BORDERRADIUS.radius_4,
+												alignItems: 'center',
+											}}
+												key={subitem.number}
+												onPress={() => {
+													selectSeat(index, subindex, subitem.number);
+
+												}}>
+												<Text style={styles.radioText}>
+													{subitem.number}
+												</Text>
+												<FontAwesomeIcon
+													name="calendar"
+													style={[
+														styles.seatIcon,
+														subitem.taken ? { color: color.seat } : {},
+														subitem.selected ? { color: color.Orange } : {},
+													]}
+												/>
+											</TouchableOpacity>
+										);
+									})}
+								</View>
+							);
+						})}
 					</View>
-					<View style={styles.radioContainer}>
-						<Ionicons
-							name="radio-button-on-outline"
-							style={[styles.radioIcon, { color: color.Orange }]}
-						/>
-						<Text style={styles.radioText}>Chosen</Text>
-					</View>
-				</View>
-				{/* Text SCREEN */}
-				<Text style={{ fontSize: 18, fontWeight: '600', color: color.text_session, alignSelf: 'center', marginBottom: 10 }}>SCREEN</Text>
-				{/* SEAT */}
-				<View style={styles.containerGap20}>
-					{twoDSeatArray?.map((item, index) => {
-						return (
-							<View key={index} style={styles.seatRow}>
-								{item?.map((subitem, subindex) => {
-									return (
-										<TouchableOpacity style={{
-											backgroundColor: color.visa,
-											borderWidth: 1,
-											borderColor: color.text_session,
-											borderRadius: BORDERRADIUS.radius_4,
-											alignItems: 'center',
-										}}
-											key={subitem.number}
-											onPress={() => {
-												selectSeat(index, subindex, subitem.number);
-											}}>
-											<Text style={styles.radioText}>
-												{subitem.number}
-											</Text>
-											<FontAwesomeIcon
-												name="calendar"
-												style={[
-													styles.seatIcon,
-													subitem.taken ? { color: color.seat } : {},
-													subitem.selected ? { color: color.Orange } : {},
-												]}
-											/>
-										</TouchableOpacity>
-									);
-								})}
-							</View>
-						);
-					})}
 				</View>
 			</View>
+
+			{
+				selectedSeat == 0 ?
+					<View></View>
+					:
+					<View style={styles.buyButton}>
+						<Text style={styles.textBuyTicket}>Buy {selectedSeat} tickets</Text>
+					</View>
+			}
+
+
 		</View>
+
 	);
 }
 
@@ -239,5 +260,19 @@ const styles = StyleSheet.create({
 		fontSize: FONTSIZE.size_12,
 		color: color.White,
 	},
-
+	buyButton: {
+		flex: 1,
+		backgroundColor: color.orange,
+		height: layout.height * 0.07,
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: layout.width * 0.75,
+		marginTop: 20,
+		borderRadius: 20
+	},
+	textBuyTicket: {
+		color: color.white,
+		fontSize: 18,
+		fontWeight: '700'
+	}
 });
