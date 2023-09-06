@@ -7,6 +7,7 @@ import { BORDERRADIUS } from '../../theme/fonts/borderRadius';
 import { FONTSIZE } from '../../theme/fonts/fontSize';
 import { SPACING } from '../../theme/fonts/spacing';
 import { useState } from 'react';
+import { FONTFAMILY } from '../../theme/fonts/fontFamily';
 const layout = Dimensions.get('window');
 
 const generateSeats = () => {
@@ -68,61 +69,81 @@ export const SeatMap = () => {
 	const [twoDSeatArray, setTwoDSeatArray] = useState<any[][]>(generateSeats());
 	const [selectedSeatArray, setSelectedSeatArray] = useState([]);
 	console.log(JSON.stringify(twoDSeatArray, null, 2));
-	//  
-	// 	if (!twoDSeatArray[index][subindex].taken) {
-	// 		let array: any = [...selectedSeatArray];
-	// 		let temp = [...twoDSeatArray];
-	// 		temp[index][subindex].selected = !temp[index][subindex].selected;
-	// 		if (!array.includes(num)) {
-	// 			array.push(num);
-	// 			setSelectedSeatArray(array);
-	// 		} else {
-	// 			const tempindex = array.indexOf(num);
-	// 			if (tempindex > -1) {
-	// 				array.splice(tempindex, 1);
-	// 				setSelectedSeatArray(array);
-	// 			}
-	// 		}
 
-	// 		setTwoDSeatArray(temp);
-	// 	}
-	// };
+	const selectSeat = (index: number, subindex: number, num: number) => {
+		if (!twoDSeatArray[index][subindex].taken) {
+			let array: any = [...selectedSeatArray];
+			let temp = [...twoDSeatArray];
+			temp[index][subindex].selected = !temp[index][subindex].selected;
+			if (!array.includes(num)) {
+				array.push(num);
+				setSelectedSeatArray(array);
+			} else {
+				const tempindex = array.indexOf(num);
+				if (tempindex > -1) {
+					array.splice(tempindex, 1);
+					setSelectedSeatArray(array);
+				}
+			}
+			
+			setTwoDSeatArray(temp);
+		}
+	};
 
 
 	return (
-		<View style={{ height: layout.height * 0.8, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-			<Text style={{ fontSize: 18, fontWeight: '600', color: color.text_session, }}>SCREEN</Text>
-
+		<View style={{ flex: 1, height: layout.height * 0.8, justifyContent: 'center', alignItems: 'center' }}>
 			<View style={styles.seatContainer}>
+				{/* raido button */}
+				<View style={styles.seatRadioContainer}>
+					<View style={styles.radioContainer}>
+						<Ionicons name="radio-button-on-outline" style={styles.radioIcon} />
+						<Text style={styles.radioText}>Available</Text>
+					</View>
+					<View style={styles.radioContainer}>
+						<Ionicons
+							name="radio-button-on-outline"
+							style={[styles.radioIcon, { color: color.WhiteRGBA32 }]}
+						/>
+						<Text style={styles.radioText}>Occupied</Text>
+					</View>
+					<View style={styles.radioContainer}>
+						<Ionicons
+							name="radio-button-on-outline"
+							style={[styles.radioIcon, { color: color.Orange }]}
+						/>
+						<Text style={styles.radioText}>Chosen</Text>
+					</View>
+				</View>
+				{/* Text SCREEN */}
+				<Text style={{ fontSize: 18, fontWeight: '600', color: color.text_session, alignSelf: 'center', marginBottom: 10 }}>SCREEN</Text>
+				{/* SEAT */}
 				<View style={styles.containerGap20}>
 					{twoDSeatArray?.map((item, index) => {
 						return (
 							<View key={index} style={styles.seatRow}>
 								{item?.map((subitem, subindex) => {
-						
-console.log('====================================');
-console.log(subindex);
-console.log('====================================');
 									return (
-										<TouchableOpacity style={{ backgroundColor: color.text_session, 
+										<TouchableOpacity style={{
+											backgroundColor: color.visa,
 											borderWidth: 1,
 											borderColor: color.text_session,
-											borderRadius: BORDERRADIUS.radius_8,
-											alignItems: 'center', }}
+											borderRadius: BORDERRADIUS.radius_4,
+											alignItems: 'center',
+										}}
 											key={subitem.number}
 											onPress={() => {
-												// selectSeat(index, subindex, subitem.number);
+												selectSeat(index, subindex, subitem.number);
 											}}>
-												<Text>
-													{subindex}
-												</Text>
-										
+											<Text style={styles.radioText}>
+												{subitem.number}
+											</Text>
 											<FontAwesomeIcon
 												name="calendar"
 												style={[
 													styles.seatIcon,
-													subitem.taken ? { color: color.White } : {},
-													subitem.selected ? { color: color.Yellow } : {},
+													subitem.taken ? { color: color.seat } : {},
+													subitem.selected ? { color: color.Orange } : {},
 												]}
 											/>
 										</TouchableOpacity>
@@ -132,26 +153,6 @@ console.log('====================================');
 						);
 					})}
 				</View>
-				{/* <View style={styles.seatRadioContainer}>
-					<View style={styles.radioContainer}>
-						<CustomIcon name="radio" style={styles.radioIcon} />
-						<Text style={styles.radioText}>Available</Text>
-					</View>
-					<View style={styles.radioContainer}>
-						<CustomIcon
-							name="radio"
-							style={[styles.radioIcon, { color: COLORS.Grey }]}
-						/>
-						<Text style={styles.radioText}>Taken</Text>
-					</View>
-					<View style={styles.radioContainer}>
-						<CustomIcon
-							name="radio"
-							style={[styles.radioIcon, { color: COLORS.Orange }]}
-						/>
-						<Text style={styles.radioText}>Selected</Text>
-					</View>
-				</View> */}
 			</View>
 
 
@@ -162,7 +163,7 @@ console.log('====================================');
 const SeatBookingScreen = () => {
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: color.default_background }} >
-			<ScrollView>
+			<ScrollView style={{ flex: 1 }}>
 				<MovieHeader />
 				<SeatMap />
 			</ScrollView>
@@ -208,11 +209,12 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 	seatIcon: {
-		fontSize: FONTSIZE.size_30,
-		color: color.Yellow,
+		fontSize: FONTSIZE.size_20,
+		color: color.White,
 	},
 	seatContainer: {
-		marginVertical: SPACING.space_20,
+		marginVertical: 10,
+		flex: 1,
 	},
 	containerGap20: {
 		gap: SPACING.space_20,
@@ -221,5 +223,26 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		gap: SPACING.space_20,
 		justifyContent: 'center',
-	}
+	},
+	seatRadioContainer: {
+		flexDirection: 'row',
+		margin: 10,
+		alignItems: 'center',
+		justifyContent: 'space-evenly',
+	},
+	radioContainer: {
+		flexDirection: 'row',
+		gap: SPACING.space_10,
+		alignItems: 'center',
+	},
+	radioIcon: {
+		fontSize: FONTSIZE.size_20,
+		color: color.White,
+	},
+	radioText: {
+		fontFamily: FONTFAMILY.poppins_medium,
+		fontSize: FONTSIZE.size_12,
+		color: color.White,
+	},
+
 });
