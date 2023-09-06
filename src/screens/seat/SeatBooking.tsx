@@ -154,8 +154,6 @@ export const SeatMap = () => {
 					})}
 				</View>
 			</View>
-
-
 		</View>
 	);
 }
