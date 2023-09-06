@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
 	},
 	loginProfile: {
 		width: 70,
-		backgroundColor: color.orange,
+		backgroundColor: color.button,
 		borderRadius: 8,
 		height: 40,
 		alignItems: 'center',

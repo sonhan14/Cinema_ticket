@@ -65,7 +65,7 @@ export const MovieHeader = () => {
 	)
 }
 
-export const SeatMap = () => {
+export const SeatMap = ({navigation}: any) => {
 	const [twoDSeatArray, setTwoDSeatArray] = useState<any[][]>(generateSeats());
 	const [selectedSeatArray, setSelectedSeatArray] = useState([]);
 	console.log(JSON.stringify(twoDSeatArray, null, 2));
@@ -85,12 +85,9 @@ export const SeatMap = () => {
 					setSelectedSeatArray(array);
 				}
 			}
-			
 			setTwoDSeatArray(temp);
 		}
 	};
-
-
 	return (
 		<View style={{ flex: 1, height: layout.height * 0.8, justifyContent: 'center', alignItems: 'center' }}>
 			<View style={styles.seatContainer}>
@@ -158,12 +155,12 @@ export const SeatMap = () => {
 	);
 }
 
-const SeatBookingScreen = () => {
+const SeatBookingScreen = ({navigation}: any) => {
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: color.default_background }} >
 			<ScrollView style={{ flex: 1 }}>
 				<MovieHeader />
-				<SeatMap />
+				<SeatMap navigation = {navigation}/>
 			</ScrollView>
 		</SafeAreaView>
 	)

@@ -5,6 +5,7 @@ export const color = {
     white: '#ffffff',
     offWhite: '#e6e6e6',
     orange: '#F15829',
+    button: 'rgba(255, 128, 54, 1)',
     orangeDarker: '#EB9918',
     lightGrey: '#8E8E8E',
     lighterGrey: '#F2F2F2',
