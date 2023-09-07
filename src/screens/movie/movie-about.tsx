@@ -15,6 +15,8 @@ import { Button } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { BORDERRADIUS } from '../../theme/fonts/borderRadius';
+import { FONTFAMILY } from '../../theme/fonts/fontFamily';
 
 const layout = Dimensions.get('window');
 
@@ -79,7 +81,7 @@ const MovieTrailer = () => {
             </TouchableOpacity>
 
             {/* movie mark */}
-            <View style={{ height: layout.height * 0.1, width: layout.width, backgroundColor: color.default_status_bar, flexDirection: 'row' }}>
+            <View style={{ height: layout.height * 0.08, width: layout.width, backgroundColor: color.default_status_bar, flexDirection: 'row' }}>
                 <View style={styles.mark}>
                     <Text style={styles.text_mark}>8.3</Text>
                     <Text style={[styles.text_mark, { color: color.text_session }]}>IMDB</Text>
@@ -97,7 +99,7 @@ const MovieTrailer = () => {
 
 const Info = ({ title, result }: any) => {
     return (
-        <View style={{ flexDirection: 'row', paddingVertical: 5, justifyContent: 'space-between' }}>
+        <View style={{ flexDirection: 'row', paddingTop: 5, paddingBottom: 3, justifyContent: 'space-between' }}>
             <Text style={[styles.text_mark, { color: color.text_session, width: '25%' }]}>{title}</Text>
             <Text style={[styles.text_mark, { width: '70%', fontSize: 16 }]}>{result}</Text>
         </View>
@@ -126,6 +128,21 @@ const MovieInfo = () => {
     )
 }
 
+const ButtonSelected = ({navigation} : any) => {
+    return (
+        <TouchableOpacity style={styles.buttonContinue} onPress={()=> {navigation.navigate('SeatBooking')}}>
+                    
+                    <Text style={{
+                        fontSize: 18,
+                        fontFamily: FONTFAMILY.poppins_thin,
+                        fontWeight: '700',
+                        color: color.White,
+                        paddingLeft: 10,
+                    }}>Select session</Text>
+                </TouchableOpacity>
+    )
+}
+
 export const MovieAbout = ({navigation} : any) => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: color.default_background }}>
@@ -133,6 +150,7 @@ export const MovieAbout = ({navigation} : any) => {
                 <MovieHeader navigation = {navigation}/>
                 <MovieTrailer />
                 <MovieInfo />
+                <ButtonSelected navigation = {navigation} />
             </ScrollView>
         </SafeAreaView>
     )
@@ -142,9 +160,8 @@ export const MovieAbout = ({navigation} : any) => {
 
 const styles = StyleSheet.create({
     containerHeader: {
-        height: layout.height * 0.2,
+        height: layout.height * 0.15,
         backgroundColor: color.default_status_bar,
-
     },
     titleMiddle: {
         alignItems: 'center',
@@ -200,6 +217,17 @@ const styles = StyleSheet.create({
         color: color.white,
         fontSize: 18,
         fontWeight: '600',
-
-    }
+    },
+    buttonContinue: {
+        height: layout.height * 0.07,
+        width: layout.width * 0.9,
+        backgroundColor: color.button,
+        marginHorizontal: 0,
+        borderRadius: BORDERRADIUS.radius_8,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
 })
+
