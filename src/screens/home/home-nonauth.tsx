@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import { SPACING } from '../../theme/fonts/spacing';
 import MovieCard from '../../components/MovieCard';
 import { baseImagePath, nowPlayingMovies } from '../../api/apicalls';
+import useAuth from '../../utilities/Auth';
+
 
 
 const layout = Dimensions.get('window');
@@ -26,8 +28,8 @@ const getNowPlayingMoviesList = async () => {
 };
 
 const HomeScreenNon = ({ navigation }: any) => {
+	
 	const [nowPlayingMoviesList, setNowPlayingMoviesList] = useState<any>(undefined);
-
 	useEffect(() => {
 		(async () => {
 			let tempNowPlaying = await getNowPlayingMoviesList();

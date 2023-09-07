@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, SafeAreaView, ScrollView, Dimensions, TouchableOpacity, StatusBar, Alert } from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView, ScrollView, Dimensions, TouchableOpacity, StatusBar, Alert, ToastAndroid } from 'react-native';
 import { color } from '../../theme/fonts/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -8,6 +8,7 @@ import { FONTSIZE } from '../../theme/fonts/fontSize';
 import { SPACING } from '../../theme/fonts/spacing';
 import { useState } from 'react';
 import { FONTFAMILY } from '../../theme/fonts/fontFamily';
+import useAuth from '../../utilities/Auth';
 const layout = Dimensions.get('window');
 
 const generateSeats = () => {
@@ -68,7 +69,7 @@ export const SeatMap = ({ navigation }: any) => {
 	const [selectedSeatArray, setSelectedSeatArray] = useState([]);
 	const [selectedSeat, setSelectedSeat] = useState(0);
 	console.log(JSON.stringify(twoDSeatArray, null, 2));
-
+	const user = useAuth();
 	const selectSeat = (index: number, subindex: number, num: number) => {
 		if (!twoDSeatArray[index][subindex].taken) {
 			let array: any = [...selectedSeatArray];
@@ -147,7 +148,17 @@ export const SeatMap = ({ navigation }: any) => {
 				selectedSeat == 0 ?
 					<View></View>
 					:
-					<TouchableOpacity style={styles.buttonContinue} onPress={() => { navigation.navigate('Loading', {screen: 'Pay'}) }}>
+					<TouchableOpacity style={styles.buttonContinue} onPress={() => { 
+						{
+							user ?  (
+								navigation.navigate('Loading', {screen: 'Pay'}) 
+							) : (
+								ToastAndroid.show('Please login to buy ticket', ToastAndroid.SHORT),
+								navigation.navigate('Loading', {screen: 'Login'}) 
+							)
+						}
+						
+						}}>
 						<Text style={{
 							fontSize: 18,
 							fontFamily: FONTFAMILY.poppins_thin,
