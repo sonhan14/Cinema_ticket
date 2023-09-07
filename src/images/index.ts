@@ -3,5 +3,7 @@ export const images = {
     movie: require('./image_background_movie.png'),
     movie2: require('./movie.jpg'),
     movie3: require('./R.jpg'),
-    QR: require('./QRCode.jpg')
+    QR: require('./QRCode.jpg'),
+    calendar: require('./calendar.png'),
+    timeSort: require('./timeSort.png'),
 }

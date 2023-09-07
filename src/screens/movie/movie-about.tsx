@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
     StyleSheet,
     View,
@@ -11,18 +11,19 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { color } from '../../theme/fonts/colors';
-import { Button } from 'react-native-paper';
+import { Button, Switch } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { images } from '../../images';
+
 import { BORDERRADIUS } from '../../theme/fonts/borderRadius';
 import { FONTFAMILY } from '../../theme/fonts/fontFamily';
 
 const layout = Dimensions.get('window');
 
-export const MovieHeader = ({navigation} : any) => {
-    
-    const [tabIndex, setTabIndex] = useState(false); //choose about or session
+export const MovieHeader = ({navigation, tabIndex, setTabIndex} : any) => {
     return (
         <View style={styles.containerHeader}>
             {/* title header */}
@@ -128,6 +129,90 @@ const MovieInfo = () => {
     )
 }
 
+const TimeBar = () => {
+    const [isEnabled, setIsEnabled] = useState(false);
+    return (
+        <View style={styles.timeBar}>
+            <View style={styles.timeBarEle}>
+                <Image style={{ height: layout.height * 0.03, width: layout.height * 0.03, marginBottom: 10 }} source={images.calendar} />
+                <Text style={{ color: color.white, fontWeight: '500' }}>April, 18</Text>
+            </View>
+            <View style={styles.timeBarEle}>
+                <Image style={{ height: layout.height * 0.03, width: layout.height * 0.03, marginBottom: 10 }} source={images.timeSort} />
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ color: color.white, fontWeight: '500' }}>Time </Text>
+                    <Ionicons name={'arrow-up-outline'} color="white" size={18} />
+                </View>
+
+            </View>
+            <View style={styles.timeBarEle}>
+                <Switch
+                    style={{ marginBottom: 5 }}
+                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={() => { setIsEnabled(!isEnabled) }}
+                    value={isEnabled}
+                />
+                <Text style={{ color: color.white, fontWeight: '500' }}>April, 18</Text>
+            </View>
+        </View>
+    )
+}
+
+const TimeCalendar = () => {
+    const textItems = ['Time', 'Adult', 'Child', 'Student', 'VIP'];
+    const [priceList, setPriceList] = useState([
+        { price: '3500 T' },
+        { price: '3500 T' },
+        { price: '3500 T' },
+        { price: '3500 T' },
+    ]);
+    const [timeList, setTimeList] = useState([
+        { time: '14:10' },
+        { time: '15:10' },
+        { time: '16:10' },
+        { time: '17:10' },
+        { time: '18:10' },
+    ]);
+
+
+    return (
+        <View style={{ flex: 1, marginBottom: 20 }}>
+            <View style={styles.cateBar}>
+                {textItems.map((item, index) => (
+                    <View style={styles.textBarContainer} key={index}>
+                        <Text style={styles.textBar}>{item}</Text>
+                    </View>
+                ))}
+            </View>
+            {timeList.map((time, index) => (
+                <View key={index} style={styles.timeInfoContainer}>
+                    <View style={styles.time_text_container}>
+                        <Text style={styles.text_white}>{time.time}</Text>
+                        <Text style={[styles.textBar, { marginTop: 10 }]}>Pyc</Text>
+                    </View>
+                    <View style={{ height: '100%', width: '70%', justifyContent: 'center', padding: 10 }}>
+                        <Text style={styles.text_white}>Eurasia Cinema 7</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
+                            {priceList.map((price, i) => (
+                                <View key={i} style={{ width: '20%', justifyContent: 'center' }}>
+                                    <Text style={[styles.text_white, { fontSize: 14 }]}>{price.price}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    </View>
+
+
+
+                </View>
+            ))}
+
+
+        </View>
+    )
+}
+
 const ButtonSelected = ({navigation} : any) => {
     return (
         <TouchableOpacity style={styles.buttonContinue} onPress={()=> {navigation.navigate('SeatBooking')}}>
@@ -143,14 +228,25 @@ const ButtonSelected = ({navigation} : any) => {
     )
 }
 
-export const MovieAbout = ({navigation} : any) => {
+export const MovieAbout = () => {
+    const [tabIndex, setTabIndex] = useState(false); //choose about or session
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: color.default_background }}>
             <ScrollView>
-                <MovieHeader navigation = {navigation}/>
-                <MovieTrailer />
-                <MovieInfo />
-                <ButtonSelected navigation = {navigation} />
+                <MovieHeader navigation = {navigation} tabIndex={tabIndex} setTabIndex={setTabIndex} />
+                {!tabIndex ?
+                    <View>
+                        <MovieTrailer />
+                        <MovieInfo />
+                        <ButtonSelected navigation = {navigation} />
+                    </View>
+
+                    :
+                    <View>
+                        <TimeBar />
+                        <TimeCalendar />
+                    </View>
+                }
             </ScrollView>
         </SafeAreaView>
     )
@@ -162,6 +258,8 @@ const styles = StyleSheet.create({
     containerHeader: {
         height: layout.height * 0.15,
         backgroundColor: color.default_status_bar,
+        borderBottomColor: color.Grey,
+        borderBottomWidth: 2
     },
     titleMiddle: {
         alignItems: 'center',
@@ -218,6 +316,62 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '600',
     },
+
+    timeBar: {
+        height: layout.height * 0.1,
+        backgroundColor: color.default_status_bar,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingHorizontal: 20
+    },
+    timeBarEle: {
+        height: '100%',
+        width: '30%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    cateBar: {
+        height: layout.height * 0.05,
+        backgroundColor: '#253554',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingHorizontal: 20
+    },
+    textBarContainer: {
+        height: '100%',
+        width: '20%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    textBar: {
+        color: '#637394',
+        fontWeight: '500',
+        fontSize: 16
+    },
+    timeInfoContainer: {
+        height: layout.height * 0.15,
+        padding: 10,
+        flexDirection: 'row',
+        borderBottomColor: '#253554',
+        borderBottomWidth: 1
+    },
+    text_white: {
+        color: color.white,
+        fontWeight: '500',
+        fontSize: 18,
+
+    },
+    time_text_container: {
+        height: '100%',
+        width: '30%',
+        borderRightColor: '#253554',
+        borderRightWidth: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+})
     buttonContinue: {
         height: layout.height * 0.07,
         width: layout.width * 0.9,
@@ -230,4 +384,3 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
 })
-

@@ -128,29 +128,15 @@ export const SeatMap = ({navigation}: any) => {
 								<View key={index} style={styles.seatRow}>
 									{item?.map((subitem, subindex) => {
 										return (
-											<TouchableOpacity style={{
-												backgroundColor: color.visa,
-												borderWidth: 1,
-												borderColor: color.text_session,
-												borderRadius: BORDERRADIUS.radius_4,
-												alignItems: 'center',
-											}}
+											<TouchableOpacity style={[styles.seatNormal, subitem.taken ? {backgroundColor: color.seat} : subitem.selected ? {backgroundColor: color.Orange} : {}]}
 												key={subitem.number}
 												onPress={() => {
 													selectSeat(index, subindex, subitem.number);
 
 												}}>
-												<Text style={styles.radioText}>
-													{subitem.number}
+												<Text style={[styles.radioText, subitem.taken ? {color: color.lightGrey} : {}]}>
+													{!subitem.taken ? subitem.number : 'X'}
 												</Text>
-												<FontAwesomeIcon
-													name="calendar"
-													style={[
-														styles.seatIcon,
-														subitem.taken ? { color: color.seat } : {},
-														subitem.selected ? { color: color.Orange } : {},
-													]}
-												/>
 											</TouchableOpacity>
 										);
 									})}
@@ -234,6 +220,7 @@ const styles = StyleSheet.create({
 	},
 	containerGap20: {
 		gap: SPACING.space_20,
+		marginTop: 10
 	},
 	seatRow: {
 		flexDirection: 'row',
@@ -274,5 +261,15 @@ const styles = StyleSheet.create({
 		color: color.white,
 		fontSize: 18,
 		fontWeight: '700'
+	},
+	seatNormal: {
+		backgroundColor: color.visa,
+		borderWidth: 1,
+		borderColor: color.text_session,
+		borderRadius: BORDERRADIUS.radius_4,
+		alignItems: 'center',
+		justifyContent: 'center',
+		width: layout.width * 0.075,
+		height: layout.width * 0.075
 	}
 });
