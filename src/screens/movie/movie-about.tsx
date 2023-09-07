@@ -23,12 +23,12 @@ import { FONTFAMILY } from '../../theme/fonts/fontFamily';
 
 const layout = Dimensions.get('window');
 
-export const MovieHeader = ({navigation, tabIndex, setTabIndex} : any) => {
+export const MovieHeader = ({ navigation, tabIndex, setTabIndex }: any) => {
     return (
         <View style={styles.containerHeader}>
             {/* title header */}
             <View style={styles.wrapper}>
-                <Button style={styles.btnIcon} onPress={() => { navigation.goBack()}}>
+                <Button style={styles.btnIcon} onPress={() => { navigation.goBack() }}>
                     <Ionicons name={'chevron-back-outline'} color="white" size={25} />
                 </Button>
                 <View style={styles.titleMiddle}>
@@ -213,32 +213,31 @@ const TimeCalendar = () => {
     )
 }
 
-const ButtonSelected = ({navigation} : any) => {
+const ButtonSelected = ({ navigation }: any) => {
     return (
-        <TouchableOpacity style={styles.buttonContinue} onPress={()=> {navigation.navigate('SeatBooking')}}>
-                    
-                    <Text style={{
-                        fontSize: 18,
-                        fontFamily: FONTFAMILY.poppins_thin,
-                        fontWeight: '700',
-                        color: color.White,
-                        paddingLeft: 10,
-                    }}>Select session</Text>
-                </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonContinue} onPress={() => { navigation.navigate('SeatBooking') }}>
+            <Text style={{
+                fontSize: 18,
+                fontFamily: FONTFAMILY.poppins_thin,
+                fontWeight: '700',
+                color: color.White,
+                paddingLeft: 10,
+            }}>Select session</Text>
+        </TouchableOpacity>
     )
 }
 
-export const MovieAbout = () => {
+export const MovieAbout = ({ navigation }: any) => {
     const [tabIndex, setTabIndex] = useState(false); //choose about or session
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: color.default_background }}>
             <ScrollView>
-                <MovieHeader navigation = {navigation} tabIndex={tabIndex} setTabIndex={setTabIndex} />
+                <MovieHeader navigation={navigation} tabIndex={tabIndex} setTabIndex={setTabIndex} />
                 {!tabIndex ?
                     <View>
                         <MovieTrailer />
                         <MovieInfo />
-                        <ButtonSelected navigation = {navigation} />
+                        <ButtonSelected navigation={navigation} />
                     </View>
 
                     :
@@ -370,8 +369,7 @@ const styles = StyleSheet.create({
         borderRightWidth: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    }
-})
+    },
     buttonContinue: {
         height: layout.height * 0.07,
         width: layout.width * 0.9,
