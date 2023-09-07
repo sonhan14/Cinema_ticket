@@ -18,14 +18,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const layout = Dimensions.get('window');
 
-export const MovieHeader = () => {
+export const MovieHeader = ({navigation} : any) => {
     
     const [tabIndex, setTabIndex] = useState(false); //choose about or session
     return (
         <View style={styles.containerHeader}>
             {/* title header */}
             <View style={styles.wrapper}>
-                <Button style={styles.btnIcon} onPress={() => { }}>
+                <Button style={styles.btnIcon} onPress={() => { navigation.goBack()}}>
                     <Ionicons name={'chevron-back-outline'} color="white" size={25} />
                 </Button>
                 <View style={styles.titleMiddle}>
@@ -126,11 +126,11 @@ const MovieInfo = () => {
     )
 }
 
-export const MovieAbout = () => {
+export const MovieAbout = ({navigation} : any) => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: color.default_background }}>
             <ScrollView>
-                <MovieHeader />
+                <MovieHeader navigation = {navigation}/>
                 <MovieTrailer />
                 <MovieInfo />
             </ScrollView>
