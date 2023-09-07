@@ -21,7 +21,7 @@ export const MovieHeader = ({ navigation }: any) => {
                 <View style={styles.titleMiddle}>
                     <Text style={{ fontSize: 20, fontWeight: '700', color: color.white }}>Pay for ticket</Text>
                 </View>
-                <TouchableOpacity style={styles.btnIconRight} onPress={() => { navigation.goBack() }}>
+                <TouchableOpacity style={styles.btnIconRight} onPress={() => { navigation.navigate('HomeAuth') }}>
                     <Ionicons name={'close-outline'} color={color.text_session} size={25} />
                 </TouchableOpacity>
             </View>

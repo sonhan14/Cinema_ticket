@@ -35,7 +35,7 @@ export const ProfileHeader = ({navigation}: any) => {
                 <View style={styles.titleMiddle}>
                     <Text style={{ fontSize: 20, fontWeight: '700', color: color.white }}>8 (707) 268 4812</Text>
                 </View>
-                <TouchableOpacity style={styles.btnIcon} onPress={() => { SignOutUser() }} >
+                <TouchableOpacity style={styles.btnIcon} onPress={() => { SignOutUser(), navigation.navigate('HomeNon') }} >
                     <Ionicons name={'log-out-outline'} color="white" size={25} />
                 </TouchableOpacity>
             </View>

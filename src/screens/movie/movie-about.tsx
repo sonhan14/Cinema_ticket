@@ -20,8 +20,12 @@ import { images } from '../../images';
 
 import { BORDERRADIUS } from '../../theme/fonts/borderRadius';
 import { FONTFAMILY } from '../../theme/fonts/fontFamily';
+import auth from '@react-native-firebase/auth';
+import useAuth from '../../utilities/Auth';
 
 const layout = Dimensions.get('window');
+
+
 
 export const MovieHeader = ({ navigation, tabIndex, setTabIndex }: any) => {
     return (
@@ -228,7 +232,11 @@ const ButtonSelected = ({ navigation }: any) => {
 }
 
 export const MovieAbout = ({ navigation }: any) => {
+
     const [tabIndex, setTabIndex] = useState(false); //choose about or session
+
+    const user = useAuth();
+    
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: color.default_background }}>
             <ScrollView>
@@ -237,7 +245,16 @@ export const MovieAbout = ({ navigation }: any) => {
                     <View>
                         <MovieTrailer />
                         <MovieInfo />
-                        <ButtonSelected navigation={navigation} />
+
+                        {/* {
+                            user ? ( */}
+                                <ButtonSelected navigation={navigation} />
+                            {/* ) : (
+                                <View></View>
+                            )
+                        }  */}
+                        
+                        
                     </View>
 
                     :

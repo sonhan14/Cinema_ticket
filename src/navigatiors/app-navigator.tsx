@@ -36,7 +36,6 @@ const Navigation = () => {
     }, []);
 
 
-
     return (
         <NavigationContainer>
             <Stack.Navigator
@@ -70,6 +69,8 @@ const Navigation = () => {
                 <Stack.Screen name="Ticket" component={TicketScreen} />
 
                 <Stack.Screen name="Loading" component={LoadingScreen} />
+
+
 
             </Stack.Navigator>
         </NavigationContainer>
