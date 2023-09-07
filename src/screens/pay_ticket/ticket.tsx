@@ -117,7 +117,7 @@ export const TicketInfo = () => {
                         fontFamily: FONTFAMILY.poppins_thin,
                         color: color.White,
                         paddingLeft: 10,
-                    }}>Phone number</Text>
+                    }}>Refund</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonContinue}>
                     <Ionicons name={'send-outline'} color={color.White} size={25} />
@@ -126,7 +126,7 @@ export const TicketInfo = () => {
                         fontFamily: FONTFAMILY.poppins_thin,
                         color: color.White,
                         paddingLeft: 10,
-                    }}>Phone number</Text>
+                    }}>Send</Text>
                 </TouchableOpacity>
             </View>
         </View>
