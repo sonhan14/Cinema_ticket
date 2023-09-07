@@ -43,7 +43,8 @@ const Navigation = () => {
                     headerShown: false,
                     animation: 'simple_push'
                 }}
-                initialRouteName="MovieAbout" >
+
+                initialRouteName="HomeNon" >
                     
                 <Stack.Screen name="Login" component={Login} />
 

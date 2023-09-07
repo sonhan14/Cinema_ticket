@@ -44,7 +44,7 @@ export const ProfileHeader = ({navigation}: any) => {
     )
 }
 
-export const SaveCards = (props: any) => {
+export const SaveCards = ({navigation}: any) => {
     return <View style={{ height: layout.height * 0.2, width: layout.width, flexDirection: 'column' }}>
         <Text style={[styles.text_title, { color: color.text_session }]}>Save Cards</Text>
         <View style={styles.visaBoxStyle}>
@@ -63,7 +63,7 @@ export const SaveCards = (props: any) => {
 
         <Text style={[styles.text_title, { color: color.text_session }]}>Payments history</Text>
 
-        <View style={styles.paymentsBoxStyle}>
+        <TouchableOpacity style={styles.paymentsBoxStyle} onPress={()=> {navigation.navigate('Ticket')}}>
             <View style={{ 
                 flex: 1, 
                 borderRadius: BORDERRADIUS.radius_4, 
@@ -77,15 +77,13 @@ export const SaveCards = (props: any) => {
                     borderRadius: BORDERRADIUS.radius_8,
                     alignContent: 'center'
                 }} />
-            
             </View>
-
             <View style={{ flex: 2, flexDirection: 'column', }}>
                 <Text style={[styles.text_movie]}>The batman</Text>
                 <Text style={[styles.text_date]}>6 April 2023, 14:40</Text>
                 <Text style={[styles.text_place]}>Eurasia Cinema 7</Text>
             </View>
-        </View>
+        </TouchableOpacity>
 
     </View>
 }
@@ -95,7 +93,7 @@ const ProfileScreen = ({ navigation }: any) => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: color.default_background }}>
             <ProfileHeader navigation={navigation} />
-            <SaveCards />
+            <SaveCards navigation={navigation}/>
         </SafeAreaView>
     );
 };

@@ -15,21 +15,20 @@ import { Button, Switch } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 import { images } from '../../images';
+
+import { BORDERRADIUS } from '../../theme/fonts/borderRadius';
+import { FONTFAMILY } from '../../theme/fonts/fontFamily';
 
 const layout = Dimensions.get('window');
 
-
-
-
-
-export const MovieHeader = ({ tabIndex, setTabIndex }: any) => {
-
+export const MovieHeader = ({navigation, tabIndex, setTabIndex} : any) => {
     return (
         <View style={styles.containerHeader}>
             {/* title header */}
             <View style={styles.wrapper}>
-                <Button style={styles.btnIcon} onPress={() => { }}>
+                <Button style={styles.btnIcon} onPress={() => { navigation.goBack()}}>
                     <Ionicons name={'chevron-back-outline'} color="white" size={25} />
                 </Button>
                 <View style={styles.titleMiddle}>
@@ -83,7 +82,7 @@ const MovieTrailer = () => {
             </TouchableOpacity>
 
             {/* movie mark */}
-            <View style={{ height: layout.height * 0.1, width: layout.width, backgroundColor: color.default_status_bar, flexDirection: 'row' }}>
+            <View style={{ height: layout.height * 0.08, width: layout.width, backgroundColor: color.default_status_bar, flexDirection: 'row' }}>
                 <View style={styles.mark}>
                     <Text style={styles.text_mark}>8.3</Text>
                     <Text style={[styles.text_mark, { color: color.text_session }]}>IMDB</Text>
@@ -101,7 +100,7 @@ const MovieTrailer = () => {
 
 const Info = ({ title, result }: any) => {
     return (
-        <View style={{ flexDirection: 'row', paddingVertical: 5, justifyContent: 'space-between' }}>
+        <View style={{ flexDirection: 'row', paddingTop: 5, paddingBottom: 3, justifyContent: 'space-between' }}>
             <Text style={[styles.text_mark, { color: color.text_session, width: '25%' }]}>{title}</Text>
             <Text style={[styles.text_mark, { width: '70%', fontSize: 16 }]}>{result}</Text>
         </View>
@@ -214,16 +213,32 @@ const TimeCalendar = () => {
     )
 }
 
+const ButtonSelected = ({navigation} : any) => {
+    return (
+        <TouchableOpacity style={styles.buttonContinue} onPress={()=> {navigation.navigate('SeatBooking')}}>
+                    
+                    <Text style={{
+                        fontSize: 18,
+                        fontFamily: FONTFAMILY.poppins_thin,
+                        fontWeight: '700',
+                        color: color.White,
+                        paddingLeft: 10,
+                    }}>Select session</Text>
+                </TouchableOpacity>
+    )
+}
+
 export const MovieAbout = () => {
     const [tabIndex, setTabIndex] = useState(false); //choose about or session
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: color.default_background }}>
             <ScrollView>
-                <MovieHeader tabIndex={tabIndex} setTabIndex={setTabIndex} />
+                <MovieHeader navigation = {navigation} tabIndex={tabIndex} setTabIndex={setTabIndex} />
                 {!tabIndex ?
                     <View>
                         <MovieTrailer />
                         <MovieInfo />
+                        <ButtonSelected navigation = {navigation} />
                     </View>
 
                     :
@@ -232,7 +247,6 @@ export const MovieAbout = () => {
                         <TimeCalendar />
                     </View>
                 }
-
             </ScrollView>
         </SafeAreaView>
     )
@@ -242,11 +256,10 @@ export const MovieAbout = () => {
 
 const styles = StyleSheet.create({
     containerHeader: {
-        height: layout.height * 0.2,
+        height: layout.height * 0.15,
         backgroundColor: color.default_status_bar,
         borderBottomColor: color.Grey,
         borderBottomWidth: 2
-
     },
     titleMiddle: {
         alignItems: 'center',
@@ -303,6 +316,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '600',
     },
+
     timeBar: {
         height: layout.height * 0.1,
         backgroundColor: color.default_status_bar,
@@ -357,4 +371,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     }
+})
+    buttonContinue: {
+        height: layout.height * 0.07,
+        width: layout.width * 0.9,
+        backgroundColor: color.button,
+        marginHorizontal: 0,
+        borderRadius: BORDERRADIUS.radius_8,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
 })
