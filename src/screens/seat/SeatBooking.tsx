@@ -32,14 +32,12 @@ const generateSeats = () => {
 	return rowArray;
 };
 
-
-
-export const MovieHeader = () => {
+export const MovieHeader = ({ navigation }: any) => {
 	return (
 		<View style={styles.containerHeader}>
 			{/* title header */}
 			<View style={styles.wrapper}>
-				<TouchableOpacity style={styles.btnIcon} onPress={() => { }}>
+				<TouchableOpacity style={styles.btnIcon} onPress={() => { navigation.goBack() }}>
 					<Ionicons name={'chevron-back-outline'} color="white" size={25} />
 				</TouchableOpacity>
 				<View style={styles.topBar}>
@@ -65,7 +63,7 @@ export const MovieHeader = () => {
 	)
 }
 
-export const SeatMap = ({navigation}: any) => {
+export const SeatMap = ({ navigation }: any) => {
 	const [twoDSeatArray, setTwoDSeatArray] = useState<any[][]>(generateSeats());
 	const [selectedSeatArray, setSelectedSeatArray] = useState([]);
 	const [selectedSeat, setSelectedSeat] = useState(0);
@@ -128,13 +126,12 @@ export const SeatMap = ({navigation}: any) => {
 								<View key={index} style={styles.seatRow}>
 									{item?.map((subitem, subindex) => {
 										return (
-											<TouchableOpacity style={[styles.seatNormal, subitem.taken ? {backgroundColor: color.seat} : subitem.selected ? {backgroundColor: color.Orange} : {}]}
+											<TouchableOpacity style={[styles.seatNormal, subitem.taken ? { backgroundColor: color.seat } : subitem.selected ? { backgroundColor: color.Orange } : {}]}
 												key={subitem.number}
 												onPress={() => {
 													selectSeat(index, subindex, subitem.number);
-
 												}}>
-												<Text style={[styles.radioText, subitem.taken ? {color: color.lightGrey} : {}]}>
+												<Text style={[styles.radioText, subitem.taken ? { color: color.lightGrey } : {}]}>
 													{!subitem.taken ? subitem.number : 'X'}
 												</Text>
 											</TouchableOpacity>
@@ -146,14 +143,19 @@ export const SeatMap = ({navigation}: any) => {
 					</View>
 				</View>
 			</View>
-
 			{
 				selectedSeat == 0 ?
 					<View></View>
 					:
-					<View style={styles.buyButton}>
-						<Text style={styles.textBuyTicket}>Buy {selectedSeat} tickets</Text>
-					</View>
+					<TouchableOpacity style={styles.buttonContinue} onPress={() => { navigation.navigate('Loading', {screen: 'Pay'}) }}>
+						<Text style={{
+							fontSize: 18,
+							fontFamily: FONTFAMILY.poppins_thin,
+							fontWeight: '700',
+							color: color.White,
+							paddingLeft: 10,
+						}}>By {selectedSeat} ticket</Text>
+					</TouchableOpacity>
 			}
 
 
@@ -162,12 +164,12 @@ export const SeatMap = ({navigation}: any) => {
 	);
 }
 
-const SeatBookingScreen = ({navigation}: any) => {
+const SeatBookingScreen = ({ navigation }: any) => {
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: color.default_background }} >
 			<ScrollView style={{ flex: 1 }}>
-				<MovieHeader />
-				<SeatMap navigation = {navigation}/>
+				<MovieHeader navigation={navigation} />
+				<SeatMap navigation={navigation} />
 			</ScrollView>
 		</SafeAreaView>
 	)
@@ -179,6 +181,17 @@ const styles = StyleSheet.create({
 	containerHeader: {
 		height: layout.height * 0.2,
 		backgroundColor: color.default_status_bar,
+	},
+	buttonContinue: {
+		height: layout.height * 0.07,
+		width: layout.width * 0.7,
+		backgroundColor: color.button,
+		marginTop: 20,
+		borderRadius: BORDERRADIUS.radius_8,
+		alignSelf: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
+		flexDirection: 'row'
 	},
 	wrapper: {
 		height: layout.height * 0.1,

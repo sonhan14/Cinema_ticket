@@ -13,6 +13,7 @@ import ProfileEmptyScreen from '../screens/profiles/profile_empty';
 import SeatBookingScreen from '../screens/seat/SeatBooking';
 import TicketScreen from '../screens/pay_ticket/ticket';
 import PayScreen from '../screens/pay_ticket/pay';
+import LoadingScreen from '../screens/loading/loading';
 
 
 const Stack = createNativeStackNavigator();
@@ -68,6 +69,7 @@ const Navigation = () => {
 
                 <Stack.Screen name="Ticket" component={TicketScreen} />
 
+                <Stack.Screen name="Loading" component={LoadingScreen} />
 
             </Stack.Navigator>
         </NavigationContainer>

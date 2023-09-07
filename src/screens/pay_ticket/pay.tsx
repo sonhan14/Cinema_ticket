@@ -27,7 +27,7 @@ export const MovieHeader = ({navigation} : any) => {
     )
 }
 
-export const TicketInfo = () => {
+export const TicketInfo = ({navigation}: any) => {
     return (
         <View style={{
             backgroundColor: color.default_status_bar,
@@ -104,13 +104,13 @@ export const TicketInfo = () => {
                         paddingLeft: 10,
                     }}>Phone number</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonContinue}>
+                <TouchableOpacity style={styles.buttonContinue} onPress={() => { navigation.navigate('Loading', {screen: 'Ticket'}) }}>
                     <Text style={{
                         fontSize: 18,
                         fontFamily: FONTFAMILY.poppins_thin,
                         color: color.White,
                         paddingLeft: 10,
-                    }}>Phone number</Text>
+                    }}>Coninue</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -122,7 +122,7 @@ const PayScreen = ({navigation}: any) => {
         <SafeAreaView style={{ flex: 1, backgroundColor: color.default_background }} >
             <View style={{ flex: 1 }}>
                 <MovieHeader navigation = {navigation} />
-                <TicketInfo />
+                <TicketInfo navigation = {navigation}/>
             </View>
         </SafeAreaView>
     );
